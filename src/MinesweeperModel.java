@@ -1,5 +1,8 @@
+import java.util.Random;
+
 public class MinesweeperModel {
 
+    Random rand = new Random();
     private int minefieldX, minefieldY;
     private int[][] minefield;
 
@@ -27,4 +30,21 @@ public class MinesweeperModel {
         return minefield;
     }
 
+    public void placeMines(int numberOfMines)
+    {
+        while( numberOfMines > 0)
+        {
+            int randomX = rand.nextInt(minefield.length);
+            int randomY = rand.nextInt(minefield[0].length);
+            try {
+                if (minefield[randomX][randomY] != 10) {
+                    minefield[randomX][randomY] = 10;
+                    numberOfMines--;
+                }
+            }catch (ArrayIndexOutOfBoundsException e)
+            {
+                System.out.println("Array out of bounds");
+            }
+        }
+    }
 }
